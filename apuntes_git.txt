@@ -1,0 +1,179 @@
+INSTALAR GIT --> sudo apt-get install git
+
+CONSEJOS PARA HACERLO OK:
+	- Hacer muchos cambios en el repositorio
+	- NO hacer cambios después de decir que está ready
+
+GIT es un sistema para controlar las distintas versiones de código
+
+PRIMEROS PASOS:
+	nombre admin:
+		 git config --global user.name "CFC"
+	correo:
+		git config --global user.email "i72frcac@uco.es"
+	color:
+		git config --global color.ui true
+	listar configuración:
+		git config --list
+
+GIT trabaja con 3 "estados" de los ficheros:
+	- DIR: Directorio de trabajo
+	- STAGE: Área de intercambio. Al menos una vez.
+	- GIT: Repositorio de git
+
+dir a stage: add			stage a dir: reset
+stage a dir: commit			git a dir: checkout
+
+git init
+	Empieza a controlar los archivos de la carpeta
+
+ls -la
+	Muestra los ficheros (con permisos -l) (archivos ocultos -a)
+
+echo "Fichero inicial para modificar" > archivo.txt
+	(Crea "archivo.txt" con el texto indicado)
+
+git add archivo.txt 
+	(pasa a stage)
+
+git add .
+	Add para todos los archivos
+
+git commit -m "Introducir el fichero inicial"	
+	(pasa a git. -m para mensaje)
+
+git commit -am "Pasamos a stage y luego a git en un paso"
+	(Realiza los dos pasos anteriores en uno)
+
+gedit archivo.txt
+	(EDITAMOS EL FICHERO)
+
+git status 
+	(Vemos el estado actual del directorio, 
+	es decir, si está actualizado o no)
+
+git log 
+	muestra los commits del más nuevo al más antiguo
+
+git log --oneline
+	muestra los commits más reducidos
+
+git log --oneline -3
+	muestra los 3 últimos commits reducidos
+
+git log -3	ó bien	git log -n 3
+	muestra los 3 commits más reciente
+
+git log --since=2018-09-06
+	muestra los commits desde una fecha
+
+git log --author=="CFC"
+	muestra los commits por autor
+
+git diff archivo.txt 
+	Para ver los cambios entre la version 
+	de git y la de dir (no stage)
+
+git diff --staged  
+	Para ver la diferencia entre git y stage
+
+git rm fichero2.txt
+	Es necesario que el fichero esté en git
+	Borra el fichero del directorio
+
+git mv archivo.txt archivo_nuevo.txt
+	Para renombrar o mover		//!!!//
+
+git checkout -- archivo_nuevo.txt
+	Traer del git al dir
+
+git reset HEAD archivo_nuevo.txt  
+	stage a dir
+
+git checkout 3962982 archivo_nuevo.txt		//!!!//
+	Recuperar version de un fichero commit antiguo
+
+git commit --amend -m "CAMBIO DESHECHO Y FICHERO NUEVO"
+	Añadir informacion al ultimo commit
+
+git revert <id_commit>
+	Revertir un commmit
+
+git reset --soft e8515c2			//!!!//
+git reset --mixed 11bc7ab			//!!!//
+git reset --hard 11bc7ab			//!!!//	
+
+git clean -n
+	Listar archivos que git no controla
+
+git clean -f
+	Eliminar archivos que git no controla
+
+gedit .gitignore
+	Archivos que git ignorará
+
+git add .gitignore 
+git commit -m "Añadido fichero gitignore"
+
+git ls-tree master
+git ls-tree master^^^
+git ls-tree master~3
+	Listar el contenido del repositorio 
+
+git show 11bc7ab 
+	Cambio scon respecto a una linea	//!!!//
+
+git diff 11bc7ab archivo_nuevo.txt
+	Comparar un commit con el actual
+
+git diff 11bc7ab..3962982 archivo_nuevo.txt
+	Comparar dos commits
+
+
+RAMA: 	DISTINTAS LINEAS DE TRABAJO, 
+		SE COPIA TODO LO QUE HABÍA EN LA RAMA ORIGINAL
+
+git branch
+	Ver ramas
+
+git branch desarrollo
+	Crear rama
+
+git checkout desarrollo
+	Cambiar a rama desarrollo
+
+git checkout -b pr
+	Crear rama y cambiarse a ella en un paso
+
+git diff master desarrollo
+	Comparar ramas
+
+git branch -m desarrollo des1
+	Cambiar nombre a ramas
+
+git branch -d des1
+	Eliminar rama	
+
+git merge pr
+	Integrar ramas a la actual
+
+git merge --abort
+	Se usa para resolver conflictos
+
+git stash save "Cambio temporal"
+	Almacenar cambio temporal
+
+git stash list
+	Listar cambios temporales
+
+
+
+
+
+
+
+
+
+
+
+

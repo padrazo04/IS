@@ -1,0 +1,273 @@
+TEACHER --> ANTONIO
+sudo apt-get install git (--fix.-missing)
+HACER MUCHOS CAMBIOS EN EL REPOSITORIO
+NO HACER CAMBIOS DESPUÉS DE DECIR QUE ESTÁ READY
+GIT SE ENCARGA DE ACTUALIZAR LOS CAMBIOS EN EL FICHERO
+
+ECLIPSE INCLUYE UN PLUGIN PARA GIT (opcional, mejor linea de comandos)
+
+nombre del admin: git config --global user.name "CFC"
+correo:
+editor de texto:
+color de la interfaz:
+listado de la configuracion:
+cambios realizados: git config --list
+
+GIT trabaja con tres estados de los ficheros:
+- DIR
+- STAGE: Debe pasar una vez por él. Estado de intercambio
+- GIR
+
+dir a stage: add		stage a dir: reset
+stage a git: commit		git a dir: checkout
+
+git init: Empieza a controlar los cambios en la carpeta
+ls -la: muestra los ficheros (con permisos) y (archivos ocultos)
+echo "Fichero inicial para modificar" > archivo.txt
+git add archivo.txt 
+git commit -m "Introducir el fichero inicial"	(-m para mensaje)
+gedit archivo.txt --> (EDITAMOS EL FICHERO)
+git status --> vemos como se ha modificado el ficherp
+git commit -m "primera modificacion del fichero"
+
+git log --> muestra los commits del más nuevo al más antiguo
+git log --oneline
+git log -3
+git log --since=2018-09-06
+git log --author=="CFC"
+
+git diff archivo.txt --> Para ver los cambios entre la version de git y la del directorio
+
+git add . --> Add para todos los archivos
+
+git diff --staged  --> Para ver la diferencia entre git y stage
+git commit -m "Segundo cambio correcto"
+git log --oneline
+
+echo "fichero para borrar" > fichero2.txt
+git add .
+git commit -m "Nuevo fichero para borrar"
+git status
+git commit -m "Fihceor borrado"
+
+git rm fichero2.txt 
+
+git mv archivo.txt archivo_nuevo.txt  --> Para renombrar
+
+git checkout archivo_nuevo.txt  --> Traer del git al dir
+
+git reset HEAD archivo_nuevo.txt  --> NO me gusta el cambio en el STAGE
+
+git checkout 3962982 archivo_nuevo.txt
+git diff --staged -->Diferencia entre el dir y el staged
+git diff
+
+git commit --amend -m "CAMBIO DESHECHO Y FICHERO NUEVO"
+--> Añadir informacion al ultimo commit
+
+git reset --soft e8515c2
+git reset --soft 11bc7ab
+echo "fichero no controlado" > archivo3.txt
+git status 
+git clean -n
+git clean -f
+
+gedit .gitignore
+gedit ejrmplo.o
+git add .gitignore 
+git commit -m "Añadido fichero gitignore"
+
+git ls-tree master
+git ls-tree maste ((ñ)) 3
+
+git show 11bc7ab --> CAmbio scon respecto a una linea
+git diff 11bc7ab..3962982
+git diff 11bc7ab..3962982 archivo_nuevo.txt
+
+CONCEPTO DE RAMA: DISTINTAS LINEAS DE TRABAJO, SE COPIA TODO LO QUE HABÍA EN LA RAMA ORIGINAL
+
+git branch
+git branch desarrollo
+git checkout desarrollo
+gedit archivo_nuevo.txt
+git add archivo_nuevo.txt
+git commit -m "Cambio en desartrollo"
+git log --oneline
+git checkout master
+git log --oneline
+
+
+
+git diff master desarrollo 
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch
+  desarrollo
+* master
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git merge desarrollo 
+Updating f4bb320..7981b58
+Fast-forward
+ archivo_nuevo.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch desarrollo 
+fatal: Ya existe una rama con el nombre «desarrollo».
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout desarrollo 
+Switched to branch 'desarrollo'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ gedit archivo_nuevo.txt 
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git add .
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git commit -m "nuevo cambio para conflicto"
+[desarrollo a4e1f45] nuevo cambio para conflicto
+ 1 file changed, 2 insertions(+)
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout master 
+Switched to branch 'master'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ gedit archivo_nuevo.txt 
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git add .
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git commit -m "Cambios"
+[master abc7c19] Cambios
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git merge desarrollo
+Automezclado archivo_nuevo.txt
+CONFLICTO(contenido): conflicto de fusión en archivo_nuevo.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git merge --abort
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git status
+En la rama master
+nothing to commit, working directory clean
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ gedit archivo_nuevo.txt 
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git commit -m "Arch corregido"
+En la rama master
+nothing to commit, working directory clean
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch rama_pr
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch 
+  desarrollo
+* master
+  rama_pr
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout desarrollo 
+Switched to branch 'desarrollo'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch -d rama_pr 
+error: The branch 'rama_pr' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D rama_pr'.
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout master  
+Switched to branch 'master
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch -d rama_pr 
+Eliminada la rama rama_pr (era abc7c19)
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout desarrollo 
+Switched to branch 'desarrollo'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch rama_pr 
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch
+* desarrollo
+  master
+  rama_pr
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout rama_pr 
+Switched to branch 'rama_pr'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ gedit archivo_nuevo.txt 
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git add .
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git commit -m "CAmbio nuevo"
+[rama_pr 1ded71f] CAmbio nuevo
+ 1 file changed, 2 insertions(+)
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch -d rama_nueva
+error: rama «rama_nueva» no encontrada.
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch -D rama_nueva
+error: rama «rama_nueva» no encontrada.
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch
+  desarrollo
+  master
+* rama_pr
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch -d rama_pr
+error: Cannot delete the branch 'rama_pr' which you are currently on.
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch master 
+fatal: Ya existe una rama con el nombre «master».
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch -d rama_pr
+error: Cannot delete the branch 'rama_pr' which you are currently on.
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout master 
+Switched to branch 'master'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git branch -d rama_pr
+error: The branch 'rama_pr' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D rama_pr'.
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout -b rama2
+Switched to a new branch 'rama2'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ gedit archivo_nuevo.txt 
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout master 
+M	archivo_nuevo.txt
+Switched to branch 'master'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout rama2
+M	archivo_nuevo.txt
+Switched to branch 'rama2'
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git status 
+En la rama rama2
+Cambios no preparados para el commit:
+  (use «git add <archivo>...» para actualizar lo que se confirmará)
+  (use «git checkout -- <archivo>...» para descartar cambios en el directorio de trabajo)
+
+	modificado:    archivo_nuevo.txt
+
+no hay cambios agregados al commit (use «git add» o «git commit -a»)
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git stash save "Prueba stash"
+Saved working directory and index state On rama2: Prueba stash
+HEAD is now at abc7c19 Cambios
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git stash list
+stash@{0}: On rama2: Prueba stash
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git status 
+En la rama rama2
+nothing to commit, working directory clean
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git checkout master 
+Switched to branch 'master'
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git stash pop stash@{0} 
+En la rama master
+Cambios no preparados para el commit:
+  (use «git add <archivo>...» para actualizar lo que se confirmará)
+  (use «git checkout -- <archivo>...» para descartar cambios en el directorio de trabajo)
+
+	modificado:    archivo_nuevo.txt
+
+no hay cambios agregados al commit (use «git add» o «git commit -a»)
+Dropped stash@{0} (6cf21dbc069785d7cf316987eccd85f94e5966a3)
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git stash list
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git commit -m "stash realizado" 
+En la rama master
+
+Cambios no preparados para el commit:
+	modificado:    archivo_nuevo.txt
+
+no hay cambios agregados al commit
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git add .
+
+carlos@carlos-SATELLITE-C50-B:~/prueba$ git commit -m "stash realizado"

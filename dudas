@@ -1,0 +1,4 @@
+¿Dejar de seguir una carpeta con GIT?
+git reset soft/mixed/hard
+git checkout 3962982 archivo_nuevo.txt
+git mv archivo.txt archivo_nuevo.txt
