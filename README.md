@@ -12,3 +12,11 @@ HOlaaaaa
 * Lista 1
 * lista 2
   * Esta va anidada
+
+# ENCABEZADO 1
+## ENCABEZADO 2
+### ENCABEZADO 3
+#### ENCABEZADO 4
+##### ENCABEZADO 5
+###### ENCABEZADO 6
+####### ENCABEZADO 7
