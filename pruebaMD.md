@@ -5,7 +5,7 @@
 	* Commit de los cambios
 	* Añadir cambios a repositorio remoto:
 	
-	`git push`
+		`git push`
 * REMOTO → LOCAL
 	* Sincronización unión:
 	~~~
