@@ -20,3 +20,6 @@ HOlaaaaa
 ##### ENCABEZADO 5
 ###### ENCABEZADO 6
 ####### ENCABEZADO 7
+
+> Esto es una cita. Carlos Freire
+`git init`
