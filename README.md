@@ -22,4 +22,11 @@ HOlaaaaa
 ####### ENCABEZADO 7
 
 > Esto es una cita. Carlos Freire
+
 `git init`
+
+---
+wefjewoifjweif
+dopwfwekpfwek
+wfwepfo
+---
